@@ -24,7 +24,5 @@ public class User extends BaseEntitiy {
     private String eMail;
     @Column(name = "USER_PASSWORD",length = 30,nullable = false)
     private String passWord;
-    @Column(name = "USER_BIRTHDAY",length = 20)
-    private LocalDateTime BirthDay;
 
 }
