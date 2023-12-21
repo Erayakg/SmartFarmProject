@@ -17,12 +17,11 @@ public class User extends BaseEntitiy {
     @SequenceGenerator(name = "USER",sequenceName = "USER_ID_SEQ",allocationSize = 1)
     private Long id;
     @Column(name = "USER_NAME",length = 30,nullable = false)
-    private String name;
-    @Column(name = "USER_SURNAME",length = 30,nullable = false)
-    private String surName;
-    @Column(name = "USER_MAIL",length = 50,nullable = false)
-    private String eMail;
+    private String username;
     @Column(name = "USER_PASSWORD",length = 30,nullable = false)
-    private String passWord;
+    private String password;
+    @Column(name = "USER_MAIL",length = 50,nullable = false)
+    private String email;
+
 
 }
