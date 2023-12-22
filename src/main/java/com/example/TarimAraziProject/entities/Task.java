@@ -5,12 +5,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Task extends BaseEntitiy {
+public class Task extends BaseEntitiy implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Task")
     @Column (name = "TASK_ID",length = 30,nullable = false)
@@ -19,8 +22,18 @@ public class Task extends BaseEntitiy {
     @Column (name = "TASK_NAME",length = 100,nullable = false)
     private String name;
     @Column(name = "TASK_STATEMENT",length = 100,nullable = false)
-    private Integer statement;
-    @Column(name = "TASK_DATE",length = 100,nullable = false)
-    private Date date;
+    private Boolean statement;
+    @Column(name = "START_DATE",length = 100,nullable = false)
+    private LocalDateTime startDate;
+    @Column(name = "END_DATE",length = 100,nullable = false)
+    private LocalDateTime endDate;
+    @Column(name = "FARM_ID",length = 50)
+    private Long farmId;
+    @Column(name = "MACHINE_ID",length = 50)
+    private Long  machineId;
+    @Column(name = "USER_ID")
+    private Long userId;
+
+
 
 }

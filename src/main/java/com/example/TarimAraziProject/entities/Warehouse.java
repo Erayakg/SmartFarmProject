@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-public class Warehouse extends BaseEntitiy{
+public class Warehouse extends BaseEntitiy implements Cloneable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Warehouse")
     @Column (name = "WAREHOUSE_ID",length = 30,nullable = false)
@@ -23,5 +23,8 @@ public class Warehouse extends BaseEntitiy{
     private Integer capacity;
     @Column(name = "OCCUPANCY",length = 100,nullable = false)
     private Double occupancy;
+    @Column(name = "USER_ID",length = 30,nullable = false )
+    private Long userId;
+
 
 }

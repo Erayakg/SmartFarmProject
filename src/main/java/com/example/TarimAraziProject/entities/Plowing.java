@@ -5,22 +5,19 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @Entity
-public class Fertilization extends BaseEntitiy{
+public class Plowing extends BaseEntitiy {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Fertilization")
-    @Column (name = "FERTILIZATION_ID",length = 30,nullable = false)
-    @SequenceGenerator(name = "Fertilization",sequenceName = "FERTILIZATION_ID_SEQ",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Plowing")
+    @Column(name = "PLOWING_ID",length = 30,nullable = false)
+    @SequenceGenerator(name = "Plowing",sequenceName = "PLOWING_ID_SEQ",allocationSize = 1)
     private Long id;
-    @Column (name = "FERTILIZATION_NAME",length = 100,nullable = false)
+    @Column (name = "PLOWING_NAME",length = 100,nullable = false)
     private String name;
     @Column(name = "AMOUNT",length = 30,nullable = false)
     private Integer fertilizationAmount;
     @Column(name = "TASK_ID",nullable = false)
     private Long taskId;
-
 }

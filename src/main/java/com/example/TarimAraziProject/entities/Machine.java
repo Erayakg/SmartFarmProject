@@ -22,5 +22,8 @@ public class Machine extends BaseEntitiy{
     private Boolean working;
     @Column(name = "MACHINE_TYPE",length = 50,nullable = false)
     private String type;
+    @Column(name = "FARM_ID")
+    private Long farmId;
+
 
 }

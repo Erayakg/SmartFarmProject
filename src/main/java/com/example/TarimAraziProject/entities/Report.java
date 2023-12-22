@@ -22,4 +22,11 @@ public class Report extends BaseEntitiy{
     private Boolean detail;
     @Column(name = "REPORT_DATE",length = 100,nullable = false)
     private Date date;
+
+    @Column(name = "TASK_ID",length = 30,nullable = false)
+    private Long taskId;
+    @Column(name = "CROP_ID",length = 30,nullable = false)
+    private Long cropId;
+
+
 }
