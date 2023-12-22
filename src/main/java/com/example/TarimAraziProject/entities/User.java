@@ -22,6 +22,10 @@ public class User extends BaseEntitiy {
     private String password;
     @Column(name = "USER_MAIL",length = 50,nullable = false)
     private String email;
+    @Column(name = "FARM_ID")
+    private Long farmId;
+    @Column(name = "VEHICLE_ID")
+    private Long vehicleId;
 
 
 }

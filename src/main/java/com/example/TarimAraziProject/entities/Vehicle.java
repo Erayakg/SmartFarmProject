@@ -19,8 +19,6 @@ public class Vehicle extends BaseEntitiy {
     private VehicleType VehicleType;
     @Column(name = "VEHICLE_NAME",length = 30,nullable = false)
     private String name;
-    @Column(name = "FARM_ID",length = 30)
-    private Long FarmId;
     @Column(name = "USER_ID",length = 20,nullable = false)
     private Long UserId;
 

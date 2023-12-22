@@ -15,10 +15,19 @@ public class Farm extends BaseEntitiy {
     @SequenceGenerator(name = "Farm",sequenceName = "FARM_ID_SEQ",allocationSize = 1)
     private Long id;
     @Column (name = "FARM_SIZE",length = 30,nullable = false)
-    private String size;
+    private Float size;
     @Column(name = "FARM_TYPE",length = 100,nullable = false)
-    private Integer type;
+    private String type;
     @Column(name = "FARM_READY",length = 30,nullable = false)
     private Boolean ready;
+    @Column(name = "TASK_ID")
+    private Long taskId;
+    @Column(name = "SENSOR_ID")
+    private Long sensorId;
+    @Column(name = "USER_ID")
+    private Long userId;
+
+
+
 
 }
