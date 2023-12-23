@@ -35,10 +35,6 @@ public class Task extends BaseEntitiy implements Serializable {
     @JoinColumn(name = "MACHINE_ID")
     private Machine machine;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
-
     @OneToMany(mappedBy = "task")
     private List<Fertilization> fertilizations;
 
