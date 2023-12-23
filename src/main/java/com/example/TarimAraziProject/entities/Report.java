@@ -23,10 +23,13 @@ public class Report extends BaseEntitiy{
     @Column(name = "REPORT_DATE",length = 100,nullable = false)
     private Date date;
 
-    @Column(name = "TASK_ID",length = 30,nullable = false)
-    private Long taskId;
-    @Column(name = "CROP_ID",length = 30,nullable = false)
-    private Long cropId;
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
+
+    @ManyToOne
+    @JoinColumn(name = "crop_id")
+    private Crop crop;
 
 
 }

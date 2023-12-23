@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,8 +23,11 @@ public class Machine extends BaseEntitiy{
     private Boolean working;
     @Column(name = "MACHINE_TYPE",length = 50,nullable = false)
     private String type;
-    @Column(name = "FARM_ID")
-    private Long farmId;
+    @ManyToOne
+    @JoinColumn(name = "farm_id")
+    private Farm farm;
 
+    @OneToMany(mappedBy = "machine")
+    private List<Task> tasks;
 
 }
