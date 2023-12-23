@@ -19,8 +19,9 @@ public class Vehicle extends BaseEntitiy {
     private VehicleType VehicleType;
     @Column(name = "VEHICLE_NAME",length = 30,nullable = false)
     private String name;
-    @Column(name = "USER_ID",length = 20,nullable = false)
-    private Long UserId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }

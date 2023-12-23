@@ -20,7 +20,8 @@ public class Fertilization extends BaseEntitiy{
     private String name;
     @Column(name = "AMOUNT",length = 30,nullable = false)
     private Integer fertilizationAmount;
-    @Column(name = "TASK_ID",nullable = false)
-    private Long taskId;
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
 }

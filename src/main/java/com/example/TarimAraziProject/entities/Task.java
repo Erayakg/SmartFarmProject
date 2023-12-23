@@ -27,13 +27,25 @@ public class Task extends BaseEntitiy implements Serializable {
     private LocalDateTime startDate;
     @Column(name = "END_DATE",length = 100,nullable = false)
     private LocalDateTime endDate;
-    @Column(name = "FARM_ID",length = 50)
-    private Long farmId;
-    @Column(name = "MACHINE_ID",length = 50)
-    private Long  machineId;
-    @Column(name = "USER_ID")
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "farm_id")
+    private Farm farm;
 
+    @ManyToOne
+    @JoinColumn(name = "machine_id")
+    private Machine machine;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "task")
+    private List<Fertilization> fertilizations;
+
+    @OneToMany(mappedBy = "task")
+    private List<Plowing> plowings;
+
+    @OneToMany(mappedBy = "task")
+    private List<Report> reports;
 
 }
