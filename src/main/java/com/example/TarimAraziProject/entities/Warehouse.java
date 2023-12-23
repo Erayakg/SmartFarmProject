@@ -24,7 +24,7 @@ public class Warehouse extends BaseEntitiy implements Cloneable{
     @Column(name = "OCCUPANCY",length = 100,nullable = false)
     private Double occupancy;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
 }

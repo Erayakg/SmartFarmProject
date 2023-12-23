@@ -23,7 +23,7 @@ public class Farm extends BaseEntitiy {
     @Column(name = "FARM_READY", length = 30, nullable = false)
     private Boolean ready;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToMany(mappedBy = "farm")

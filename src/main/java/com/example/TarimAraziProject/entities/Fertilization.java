@@ -21,7 +21,7 @@ public class Fertilization extends BaseEntitiy{
     @Column(name = "AMOUNT",length = 30,nullable = false)
     private Integer fertilizationAmount;
     @ManyToOne
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "TASK_ID")
     private Task task;
 
 }

@@ -24,11 +24,11 @@ public class Report extends BaseEntitiy{
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name = "task_id")
+    @JoinColumn(name = "TASK_ID")
     private Task task;
 
     @ManyToOne
-    @JoinColumn(name = "crop_id")
+    @JoinColumn(name = "CROP_ID")
     private Crop crop;
 
 

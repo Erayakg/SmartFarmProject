@@ -24,7 +24,7 @@ public class Machine extends BaseEntitiy{
     @Column(name = "MACHINE_TYPE",length = 50,nullable = false)
     private String type;
     @ManyToOne
-    @JoinColumn(name = "farm_id")
+    @JoinColumn(name = "FARM_ID")
     private Farm farm;
 
     @OneToMany(mappedBy = "machine")

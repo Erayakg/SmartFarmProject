@@ -20,7 +20,7 @@ public class Vehicle extends BaseEntitiy {
     @Column(name = "VEHICLE_NAME",length = 30,nullable = false)
     private String name;
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
 
