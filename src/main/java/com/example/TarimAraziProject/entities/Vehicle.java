@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class Vehicle extends BaseEntitiy {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Farm")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "VEHICLE")
     @Column(name = "VEHICLE_ID",length = 30,nullable = false)
     @SequenceGenerator(name = "VEHICLE",sequenceName = "VEHICLE_ID_SEQ",allocationSize = 1)
     private Long id;
