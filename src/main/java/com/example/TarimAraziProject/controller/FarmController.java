@@ -8,10 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/v1/farm")
 public class FarmController  {
-    @GetMapping("/deneme")
-    public ModelAndView passParametersWithModelAndView() {
-        ModelAndView modelAndView = new ModelAndView("view/viewPage");
-        modelAndView.addObject("message", "Baeldung");
-        return modelAndView;
-    }
+
 }

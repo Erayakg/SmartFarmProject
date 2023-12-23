@@ -23,7 +23,7 @@ public class Crop extends BaseEntitiy{
     @Column(name = "PLANTING_TIME",length = 30,nullable = false)
     private Date Planting_time;
     @ManyToOne
-    @JoinColumn(name = "farm_id")
+    @JoinColumn(name = "FARM_ID")
     private Farm farm;
 
 }

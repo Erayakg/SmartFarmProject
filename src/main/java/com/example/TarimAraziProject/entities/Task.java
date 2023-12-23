@@ -28,15 +28,15 @@ public class Task extends BaseEntitiy implements Serializable {
     @Column(name = "END_DATE",length = 100,nullable = false)
     private LocalDateTime endDate;
     @ManyToOne
-    @JoinColumn(name = "farm_id")
+    @JoinColumn(name = "FARM_ID")
     private Farm farm;
 
     @ManyToOne
-    @JoinColumn(name = "machine_id")
+    @JoinColumn(name = "MACHINE_ID")
     private Machine machine;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "USER_ID")
     private User user;
 
     @OneToMany(mappedBy = "task")
