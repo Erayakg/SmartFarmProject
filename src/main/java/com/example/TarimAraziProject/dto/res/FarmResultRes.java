@@ -1,10 +1,9 @@
 package com.example.TarimAraziProject.dto.res;
 
-import com.example.TarimAraziProject.entities.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import com.example.TarimAraziProject.dto.custom.CustomCropRes;
+import com.example.TarimAraziProject.dto.custom.CustomMachineRes;
+import com.example.TarimAraziProject.dto.custom.CustomSensorRes;
+import com.example.TarimAraziProject.dto.custom.CustomTaskRes;
 import lombok.Data;
 
 import java.util.List;
@@ -15,10 +14,16 @@ public class FarmResultRes {
     private Float size;
     private String type;
     private Boolean ready;
-    private User user;
-    private List<Crop> crops;
-    private List<Task> tasks;
-    private List<Machine> machines;
-    private List<Sensor> sensors;
+
+    private String userName;
+    private Long userId;
+
+    List<CustomCropRes> customCropRes;
+    List<CustomTaskRes> customTaskRes;
+    List<CustomMachineRes> customMachineRes;
+    List<CustomSensorRes> customSensorRes;
+
+
+
 
 }
