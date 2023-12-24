@@ -5,8 +5,12 @@ import com.example.TarimAraziProject.dto.custom.CustomCropRes;
 import com.example.TarimAraziProject.dto.custom.CustomMachineRes;
 import com.example.TarimAraziProject.dto.custom.CustomSensorRes;
 import com.example.TarimAraziProject.dto.custom.CustomTaskRes;
+import com.example.TarimAraziProject.dto.req.FarmSaveReq;
 import com.example.TarimAraziProject.dto.res.FarmResultRes;
 import com.example.TarimAraziProject.entities.Farm;
+import com.example.TarimAraziProject.exceptions.BusinessException;
+import com.example.TarimAraziProject.exceptions.FarmErrorMessage;
+import com.example.TarimAraziProject.general.BaseAdditionalsFields;
 import com.example.TarimAraziProject.mapper.FarmMapper;
 import com.example.TarimAraziProject.repositories.FarmRepository;
 import com.example.TarimAraziProject.services.FarmService;
@@ -20,23 +24,24 @@ import java.util.stream.Collectors;
 @Service
 public class FarmServiceImpl implements FarmService {
     private final FarmRepository farmRepository;
+
     @Autowired
     public FarmServiceImpl(FarmRepository farmRepository) {
-        this.farmRepository=farmRepository;
+        this.farmRepository = farmRepository;
     }
 
     @Override
     public FarmResultRes getAllFarm() {
 
-        List<Farm> farms=new ArrayList<>();
-        farms=farmRepository.findAll();
-        List<FarmDto> farmDto= FarmMapper.INSTANCE.convert(farms);
-        if (farms==null || farms.isEmpty()){
-            throw  new RuntimeException();
+        List<Farm> farms = new ArrayList<>();
+        farms = farmRepository.findAll();
+        List<FarmDto> farmDto = FarmMapper.INSTANCE.convert(farms);
+        if (farms == null || farms.isEmpty() || farms.size() == 0) {
+            throw new BusinessException(FarmErrorMessage.NOT_FOUND);
         }
-        FarmResultRes farmResultRes=new FarmResultRes();
+        FarmResultRes farmResultRes = new FarmResultRes();
 
-        for (FarmDto farmDto1:farmDto){
+        for (FarmDto farmDto1 : farmDto) {
             farmResultRes.setSize(farmDto1.getSize());
             farmResultRes.setReady(farmDto1.getReady());
             farmResultRes.setType(farmDto1.getType());
@@ -69,9 +74,9 @@ public class FarmServiceImpl implements FarmService {
             List<CustomMachineRes> customMachineResList = farmDto1.getMachines().stream()
                     .map(machine -> {
                         CustomMachineRes customMachineRes = new CustomMachineRes();
-                    customMachineRes.setBrand(machine.getBrand());
-                    customMachineRes.setWorking(machine.getWorking());
-                    customMachineRes.setType(machine.getType());
+                        customMachineRes.setBrand(machine.getBrand());
+                        customMachineRes.setWorking(machine.getWorking());
+                        customMachineRes.setType(machine.getType());
                         return customMachineRes;
                     })
                     .collect(Collectors.toList());
@@ -80,9 +85,9 @@ public class FarmServiceImpl implements FarmService {
             List<CustomSensorRes> customSensorResList = farmDto1.getSensors().stream()
                     .map(sensor -> {
                         CustomSensorRes customSensorRes = new CustomSensorRes();
-                            customSensorRes.setSensitivity(sensor.getSensitivity());
-                            customSensorRes.setType(sensor.getType());
-                            customSensorRes.setValue(sensor.getValue());
+                        customSensorRes.setSensitivity(sensor.getSensitivity());
+                        customSensorRes.setType(sensor.getType());
+                        customSensorRes.setValue(sensor.getValue());
                         return customSensorRes;
                     })
                     .collect(Collectors.toList());
@@ -90,4 +95,39 @@ public class FarmServiceImpl implements FarmService {
         }
         return farmResultRes;
     }
+
+    @Override
+    public FarmResultRes getFarmById(Long farmId) {
+        return null;
+    }
+
+    @Override
+    public FarmResultRes deleteFarmById(Long farmId) {
+        return null;
+    }
+
+    @Override
+    public FarmResultRes updateFarmById(Long farmId) {
+        return null;
+    }
+
+    @Override
+    public FarmResultRes saveFarm(FarmSaveReq farmSaveReq) {
+
+        if (farmSaveReq == null) {
+            throw new BusinessException(FarmErrorMessage.BAD_REQUEST);
+        }
+
+        Farm farm = FarmMapper.INSTANCE.convertFarmToReq(farmSaveReq);
+
+        Farm save = farmRepository.save(farm);
+        if (save == null) {
+            throw new BusinessException(FarmErrorMessage.SAVE_ERROR);
+        }
+
+
+        return null;
+    }
+
+
 }
