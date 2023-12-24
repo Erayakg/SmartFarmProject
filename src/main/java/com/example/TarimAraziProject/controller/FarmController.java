@@ -1,13 +1,15 @@
 package com.example.TarimAraziProject.controller;
 
+import com.example.TarimAraziProject.dto.req.FarmSaveReq;
 import com.example.TarimAraziProject.dto.res.FarmResultRes;
+import com.example.TarimAraziProject.general.RestResponse;
 import com.example.TarimAraziProject.repositories.FarmRepository;
 import com.example.TarimAraziProject.services.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
@@ -20,10 +22,16 @@ public class FarmController {
         this.farmService = farmService;
     }
     @GetMapping("/all")
-    public FarmResultRes getAllFarm() {
+    public ResponseEntity<RestResponse<FarmResultRes>> getAllFarm() {
+        FarmResultRes allFarm = farmService.getAllFarm();
+        return ResponseEntity.ok(RestResponse.of(allFarm));
+    }
+    @PostMapping
+    public ResponseEntity<RestResponse<FarmResultRes>> save(@RequestBody FarmSaveReq farmSaveReq) {
 
-        return farmService.getAllFarm();
+        FarmResultRes farmResultRes = farmService.saveFarm(farmSaveReq);
 
+        return new ResponseEntity<>(RestResponse.of(farmResultRes), HttpStatus.CREATED);
     }
 
 }
