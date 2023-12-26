@@ -1,27 +1,33 @@
 package com.example.TarimAraziProject.services.Impl;
 
 import com.example.TarimAraziProject.constants.UserErrorMessage;
-import com.example.TarimAraziProject.dto.custom.CustomCropRes;
 import com.example.TarimAraziProject.dto.custom.CustomFarmRes;
 import com.example.TarimAraziProject.dto.custom.CustomVehicleRes;
 import com.example.TarimAraziProject.dto.custom.CustomWarehouseRes;
+import com.example.TarimAraziProject.dto.req.UserSaveReq;
 import com.example.TarimAraziProject.dto.res.UserResultRes;
 import com.example.TarimAraziProject.entities.User;
+import com.example.TarimAraziProject.exceptions.BusinessException;
 import com.example.TarimAraziProject.exceptions.customExceptions.UserNotFoundExceptions;
+import com.example.TarimAraziProject.mapper.UserMapper;
 import com.example.TarimAraziProject.repositories.UserRepository;
 import com.example.TarimAraziProject.services.UserService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public List<UserResultRes> getAllUser() {
@@ -30,8 +36,9 @@ public class UserServiceImpl implements UserService {
         if (user.isEmpty()){
             throw  new UserNotFoundExceptions(UserErrorMessage.NOT_FOUND);
         }
-        UserResultRes userResultRes=new UserResultRes();
+        List<UserResultRes> userResultsRes=new ArrayList<>();
        for (User user1:user){
+           UserResultRes userResultRes=new UserResultRes();
 
            userResultRes.setUsername(user1.getUsername());
 
@@ -66,9 +73,10 @@ public class UserServiceImpl implements UserService {
                    })
                    .collect(Collectors.toList());
            userResultRes.setCustomWarehouseRes(customWarehouseRes);
+            userResultsRes.add(userResultRes);
 
        }
-       return null;
+       return userResultsRes;
     }
 
     @Override
@@ -77,7 +85,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResultRes saveUser() {
-        return null;
+    public UserResultRes saveUser(UserSaveReq userSaveReq) {
+        if (userSaveReq ==null){
+            throw new BusinessException(UserErrorMessage.BAD_REQUEST);
+        }
+        User user=new User();
+
+        user.setEmail(userSaveReq.getEmail());
+        user.setUsername(userSaveReq.getUsername());
+        user.setPassword(user.getPassword());
+        User saveUser=userRepository.save(user);
+
+        UserResultRes userResultRes=UserMapper.INSTANCE.userToUserResultRes(saveUser);
+
+
+        return userResultRes;
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.TarimAraziProject.services;
 
+import com.example.TarimAraziProject.dto.req.UserSaveReq;
 import com.example.TarimAraziProject.dto.res.UserResultRes;
 
 import java.util.List;
@@ -7,6 +8,6 @@ import java.util.List;
 public interface UserService {
       List<UserResultRes> getAllUser();
       UserResultRes getUserById(Long userId);
-      UserResultRes saveUser();
+      UserResultRes saveUser(UserSaveReq userSaveReq);
 
 }
