@@ -9,8 +9,8 @@ import com.example.TarimAraziProject.dto.req.FarmSaveReq;
 import com.example.TarimAraziProject.dto.res.FarmResultRes;
 import com.example.TarimAraziProject.entities.Farm;
 import com.example.TarimAraziProject.exceptions.BusinessException;
-import com.example.TarimAraziProject.exceptions.FarmErrorMessage;
-import com.example.TarimAraziProject.general.BaseAdditionalsFields;
+import com.example.TarimAraziProject.constants.FarmErrorMessage;
+import com.example.TarimAraziProject.exceptions.customExceptions.FarmNotFoundExceptions;
 import com.example.TarimAraziProject.mapper.FarmMapper;
 import com.example.TarimAraziProject.repositories.FarmRepository;
 import com.example.TarimAraziProject.services.FarmService;
@@ -37,7 +37,7 @@ public class FarmServiceImpl implements FarmService {
         farms = farmRepository.findAll();
         List<FarmDto> farmDto = FarmMapper.INSTANCE.convert(farms);
         if (farms == null || farms.isEmpty() || farms.size() == 0) {
-            throw new BusinessException(FarmErrorMessage.NOT_FOUND);
+            throw new FarmNotFoundExceptions(FarmErrorMessage.NOT_FOUND);
         }
         FarmResultRes farmResultRes = new FarmResultRes();
 

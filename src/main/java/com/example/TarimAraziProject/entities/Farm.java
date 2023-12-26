@@ -18,10 +18,10 @@ public class Farm extends BaseEntitiy {
     private Long id;
     @Column(name = "FARM_SIZE", length = 30, nullable = false)
     private Float size;
-    @Column(name = "FARM_TYPE", length = 100, nullable = false)
-    private String type;
     @Column(name = "FARM_READY", length = 30, nullable = false)
     private Boolean ready;
+    @Column(name = "IS_ACTIVE", length = 30, nullable = false)
+    private Boolean isActive;
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;

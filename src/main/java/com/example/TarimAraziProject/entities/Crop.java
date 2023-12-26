@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-public class Crop extends BaseEntitiy{
+public class Crop extends BaseEntitiy implements Cloneable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Crop")
     @Column (name = "CROP_ID",length = 30,nullable = false)

@@ -1,6 +1,8 @@
-package com.example.TarimAraziProject.exceptions;
+package com.example.TarimAraziProject.constants;
 
-public enum FarmErrorMessage implements BaseErrorMessage{
+import com.example.TarimAraziProject.exceptions.BaseErrorMessage;
+
+public enum FarmErrorMessage implements BaseErrorMessage {
 
     NOT_FOUND("Farm not found!"),
     BAD_REQUEST("request is null"),

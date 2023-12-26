@@ -23,8 +23,10 @@ public class FarmController {
     }
     @GetMapping("/all")
     public ResponseEntity<RestResponse<FarmResultRes>> getAllFarm() {
+
         FarmResultRes allFarm = farmService.getAllFarm();
-        return ResponseEntity.ok(RestResponse.of(allFarm));
+
+        return new ResponseEntity<>(RestResponse.of(allFarm),HttpStatus.FOUND);
     }
     @PostMapping
     public ResponseEntity<RestResponse<FarmResultRes>> save(@RequestBody FarmSaveReq farmSaveReq) {

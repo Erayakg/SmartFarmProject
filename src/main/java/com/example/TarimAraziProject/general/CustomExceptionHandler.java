@@ -1,7 +1,8 @@
 package com.example.TarimAraziProject.general;
 
 import com.example.TarimAraziProject.exceptions.BusinessException;
-import com.example.TarimAraziProject.exceptions.FarmNotFoundExceptions;
+import com.example.TarimAraziProject.exceptions.customExceptions.FarmNotFoundExceptions;
+import com.example.TarimAraziProject.exceptions.customExceptions.UserNotFoundExceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,9 +24,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
         return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleUserNotFoundExceptions(UserNotFoundExceptions e, WebRequest request){
+
+        RestResponse<GenericErrorMessage>
+                genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
+        return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.NOT_FOUND);
+
+    }
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleCustomerNotFoundExceptions(FarmNotFoundExceptions e, WebRequest request){
+    public final ResponseEntity<Object> handleFarmNotFoundExceptions(FarmNotFoundExceptions e, WebRequest request){
         RestResponse<GenericErrorMessage> genericErrorMessageRestResponse = getGenericErrorMessageRestResponse(e, request);
         return new ResponseEntity<>(genericErrorMessageRestResponse, HttpStatus.NOT_FOUND);
     }
