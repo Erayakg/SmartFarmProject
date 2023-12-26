@@ -1,10 +1,12 @@
 package com.example.TarimAraziProject.entities;
 
 import com.example.TarimAraziProject.general.BaseEntitiy;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -21,7 +23,8 @@ public class Report extends BaseEntitiy{
     @Column(name = "REPORT_DETAIL",length = 100,nullable = false)
     private Boolean detail;
     @Column(name = "REPORT_DATE",length = 100,nullable = false)
-    private Date date;
+    @JsonFormat(pattern = "ay/gg/yy")
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "TASK_ID")
