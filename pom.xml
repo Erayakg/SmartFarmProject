@@ -52,9 +52,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.swagger/swagger-annotations -->
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -67,18 +65,16 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Springfox Swagger2 for Swagger integration -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>2.9.2</version> <!-- Use the latest version -->
+			<version>2.9.2</version>
 		</dependency>
 
-		<!-- Springfox Swagger UI for the interactive documentation -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.9.2</version> <!-- Use the same version as springfox-swagger2 -->
+			<version>2.9.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -86,12 +82,12 @@
 			<version>2.1.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>1.5.5.Final</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct-processor</artifactId>

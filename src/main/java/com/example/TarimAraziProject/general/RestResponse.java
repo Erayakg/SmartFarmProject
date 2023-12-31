@@ -21,6 +21,7 @@ public class RestResponse<T> implements Serializable {
     public RestResponse(T data, Boolean success) {
         this.data = data;
         this.success = success;
+        this.message = success ? "Operation completed successfully." : "";
         this.responseDate=LocalDateTime.now();
 
     }
@@ -31,6 +32,7 @@ public class RestResponse<T> implements Serializable {
     public static <T> RestResponse<T> error(T t){
         return new RestResponse(t, false);
     }
+    public static <T> RestResponse<T> empty(){return new RestResponse<>(null,true);}
 
 
 }

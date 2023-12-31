@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService {
 
         user.setEmail(userSaveReq.getEmail());
         user.setUsername(userSaveReq.getUsername());
-        user.setPassword(user.getPassword());
+        user.setPassword(userSaveReq.getPassword());
         User saveUser=userRepository.save(user);
 
         UserResultRes userResultRes=UserMapper.INSTANCE.userToUserResultRes(saveUser);
