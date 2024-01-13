@@ -15,13 +15,17 @@ public class Farm extends BaseEntitiy {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Farm")
     @Column(name = "FARM_ID", length = 30, nullable = false)
     @SequenceGenerator(name = "Farm", sequenceName = "FARM_ID_SEQ", allocationSize = 1)
+
     private Long id;
     @Column(name = "FARM_SIZE", length = 30, nullable = false)
     private Float size;
+
     @Column(name = "FARM_READY", length = 30, nullable = false)
     private Boolean ready;
+
     @Column(name = "IS_ACTIVE", length = 30, nullable = false)
     private Boolean isActive;
+
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private User user;
@@ -33,10 +37,14 @@ public class Farm extends BaseEntitiy {
     private List<Task> tasks;
 
     @OneToMany(mappedBy = "farm")
-    private List<Machine> machines;
-
-    @OneToMany(mappedBy = "farm")
     private List<Sensor> sensors;
+
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID")
+    private Company company;
+
+
+
 
 
 }

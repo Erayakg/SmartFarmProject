@@ -16,11 +16,14 @@ public class Fertilization extends BaseEntitiy{
     @Column (name = "FERTILIZATION_ID",length = 30,nullable = false)
     @SequenceGenerator(name = "Fertilization",sequenceName = "FERTILIZATION_ID_SEQ",allocationSize = 1)
     private Long id;
-    @Column (name = "FERTILIZATION_NAME",length = 100,nullable = false)
-    private String name;
+
     @Column(name = "AMOUNT",length = 30,nullable = false)
-    private Integer fertilizationAmount;
-    @ManyToOne
+    private Float fertilizationAmount;
+
+    @Column(name = "FERTILIZATION_EXPENSE")
+    private Float expense;
+
+    @OneToOne
     @JoinColumn(name = "TASK_ID")
     private Task task;
 

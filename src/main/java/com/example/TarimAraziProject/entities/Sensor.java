@@ -23,6 +23,7 @@ public class Sensor extends BaseEntitiy {
     private Integer value;
     @Column(name = "SENSITIVITY",length = 100,nullable = false)
     private Double sensitivity;
+
     @ManyToOne
     @JoinColumn(name = "FARM_ID")
     private Farm farm;

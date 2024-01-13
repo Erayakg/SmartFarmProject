@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Task extends BaseEntitiy implements Serializable {
+public class Task extends BaseEntitiy  {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Task")
     @Column (name = "TASK_ID",length = 30,nullable = false)
@@ -27,21 +27,24 @@ public class Task extends BaseEntitiy implements Serializable {
     private LocalDateTime startDate;
     @Column(name = "END_DATE",length = 100,nullable = false)
     private LocalDateTime endDate;
+
     @ManyToOne
     @JoinColumn(name = "FARM_ID")
     private Farm farm;
 
-    @ManyToOne
-    @JoinColumn(name = "MACHINE_ID")
-    private Machine machine;
+    @OneToOne(mappedBy = "task")
+    private Fertilization fertilization;
 
-    @OneToMany(mappedBy = "task")
-    private List<Fertilization> fertilizations;
+    @OneToOne(mappedBy = "task")
+    private Harvesting harvesting;
 
-    @OneToMany(mappedBy = "task")
-    private List<Plowing> plowings;
+    @OneToOne(mappedBy = "task")
+    private Irrigate irrigate;
 
-    @OneToMany(mappedBy = "task")
-    private List<Report> reports;
+    @OneToOne(mappedBy = "task")
+    private Planting planting;
+
+
+
 
 }
