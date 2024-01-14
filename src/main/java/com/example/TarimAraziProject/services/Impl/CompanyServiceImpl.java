@@ -180,7 +180,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         try {
             Company company = optionalCompany.get();
-            company.getWarehouses().add(warehouse);
+            company.getWarehouses().add(savedWarehouse);
 
             Company savedCompany = companyRepository.save(company);
             CompanyResultRes companyResultRes = CompanyMapper.INSTANCE.companyToCompanyResultRes(savedCompany);

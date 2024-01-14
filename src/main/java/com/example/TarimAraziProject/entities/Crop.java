@@ -28,7 +28,7 @@ public class Crop extends BaseEntitiy  {
     @Enumerated(EnumType.ORDINAL)
     private CropTypeEnum cropTypeEnum;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "FARM_ID")
     private Farm farm;
 

@@ -44,7 +44,4 @@ public class Task extends BaseEntitiy  {
     @OneToOne(mappedBy = "task")
     private Planting planting;
 
-
-
-
 }

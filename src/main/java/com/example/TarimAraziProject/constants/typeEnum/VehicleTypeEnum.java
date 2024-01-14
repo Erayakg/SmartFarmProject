@@ -2,7 +2,7 @@ package com.example.TarimAraziProject.constants.typeEnum;
 
 public enum VehicleTypeEnum {
     VEHICLE_TYPE_FERTILIZATION("Fertilization Vehicle",1),
-    VEHICLE_TYPE_PLOWING("Plowing Vehicle",2),;
+    VEHICLE_TYPE_PLOWING("Plowing Vehicle",2);
 
     String typeString;
     Integer typeInt;

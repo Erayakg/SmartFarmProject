@@ -13,7 +13,7 @@ public class Harvesting extends BaseEntitiy {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Harvesting")
     @Column(name = "HARVESTING_ID",length = 30,nullable = false)
-    @SequenceGenerator(name = "Fertilization",sequenceName = "FERTILIZATION_ID_SEQ",allocationSize = 1)
+    @SequenceGenerator(name = "Harvesting",sequenceName = "HARVESTING_ID_SEQ",allocationSize = 1)
     private Long id;
 
     @Column (name = "HARVESTING_NAME",length = 100,nullable = false)

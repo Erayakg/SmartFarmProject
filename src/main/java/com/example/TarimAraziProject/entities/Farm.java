@@ -26,8 +26,8 @@ public class Farm extends BaseEntitiy {
     @Column(name = "FARM_READY", length = 30, nullable = false)
     private Boolean ready;
 
-    @OneToMany(mappedBy = "farm")
-    private List<Crop> crops;
+    @OneToOne(mappedBy = "farm")
+    private Crop crops;
 
     @OneToMany(mappedBy = "farm")
     private List<Task> tasks;

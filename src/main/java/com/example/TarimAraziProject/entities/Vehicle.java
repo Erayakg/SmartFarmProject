@@ -22,7 +22,10 @@ public class Vehicle extends BaseEntitiy {
 
     @Column(name = "VEHICLE_NAME",length = 30,nullable = false)
     private String name;
-
+    @Column(name = "VEHICLE_ACTIVE")
+    private Boolean isActive;
+    @Column(name = "EXPENSE_VEHICLE")
+    private Float expensePerKm;
     @ManyToOne
     @JoinColumn(name = "COMPANY_ID")
     private Company company;
