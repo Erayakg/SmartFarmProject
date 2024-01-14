@@ -20,15 +20,11 @@ public class Farm extends BaseEntitiy {
     @Column(name = "FARM_SIZE", length = 30, nullable = false)
     private Float size;
 
+    @Column(name = "FARM_NAME", length = 30, nullable = false)
+    private String name;
+
     @Column(name = "FARM_READY", length = 30, nullable = false)
     private Boolean ready;
-
-    @Column(name = "IS_ACTIVE", length = 30, nullable = false)
-    private Boolean isActive;
-
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private User user;
 
     @OneToMany(mappedBy = "farm")
     private List<Crop> crops;

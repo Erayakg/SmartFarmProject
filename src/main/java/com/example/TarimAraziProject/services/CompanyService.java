@@ -13,7 +13,7 @@ public interface CompanyService {
 
     Optional<CompanyResultRes> getCompanyById(Long id);
 
-    CompanyResultRes CompanySaveFarm(Long id, FarmSaveReq farmSaveReq);
+    CompanyResultRes CompanySaveFarm(Long id,  FarmSaveReq farmSaveReq);
 
     CompanyResultRes CompanySaveVehicle(Long id, VehicleSaveReq vehicleSaveReq);
 

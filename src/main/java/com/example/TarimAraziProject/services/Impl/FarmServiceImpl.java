@@ -1,10 +1,5 @@
 package com.example.TarimAraziProject.services.Impl;
 
-import com.example.TarimAraziProject.dto.FarmDto;
-import com.example.TarimAraziProject.dto.custom.CustomCropRes;
-import com.example.TarimAraziProject.dto.custom.CustomMachineRes;
-import com.example.TarimAraziProject.dto.custom.CustomSensorRes;
-import com.example.TarimAraziProject.dto.custom.CustomTaskRes;
 import com.example.TarimAraziProject.dto.req.FarmSaveReq;
 import com.example.TarimAraziProject.dto.res.FarmResultRes;
 import com.example.TarimAraziProject.entities.Farm;
@@ -17,9 +12,7 @@ import com.example.TarimAraziProject.services.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class FarmServiceImpl implements FarmService {

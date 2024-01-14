@@ -12,18 +12,14 @@ import java.util.List;
 public class FarmResultRes {
 
     private Float size;
-    private String type;
+
     private Boolean ready;
 
-    private String userName;
-    private Long userId;
+    private String name;
 
     List<CustomCropRes> customCropRes;
     List<CustomTaskRes> customTaskRes;
     List<CustomMachineRes> customMachineRes;
     List<CustomSensorRes> customSensorRes;
-
-
-
 
 }

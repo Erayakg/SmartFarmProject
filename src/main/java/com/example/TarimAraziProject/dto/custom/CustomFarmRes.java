@@ -10,5 +10,4 @@ public class CustomFarmRes {
 
     private Boolean ready;
 
-    private Boolean isActive;
 }
