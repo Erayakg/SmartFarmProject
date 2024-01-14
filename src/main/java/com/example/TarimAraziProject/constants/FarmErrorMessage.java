@@ -6,7 +6,7 @@ public enum FarmErrorMessage implements BaseErrorMessage {
 
     NOT_FOUND("Farm not found!"),
     BAD_REQUEST("request is null"),
-    SAVE_ERROR("Farm save error")
+    SAVE_ERROR("Farm save error"),
     ;
 
     private String message;

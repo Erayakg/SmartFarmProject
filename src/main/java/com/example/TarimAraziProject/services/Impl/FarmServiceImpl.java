@@ -5,8 +5,7 @@ import com.example.TarimAraziProject.dto.res.FarmResultRes;
 import com.example.TarimAraziProject.entities.Farm;
 import com.example.TarimAraziProject.exceptions.BusinessException;
 import com.example.TarimAraziProject.constants.FarmErrorMessage;
-import com.example.TarimAraziProject.exceptions.customExceptions.FarmNotFoundExceptions;
-import com.example.TarimAraziProject.mapper.FarmMapper;
+import com.example.TarimAraziProject.exceptions.customExceptions.NotFoundExceptions;
 import com.example.TarimAraziProject.repositories.FarmRepository;
 import com.example.TarimAraziProject.services.FarmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,72 +25,20 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public FarmResultRes getAllFarm() {
 
-        List<Farm> farms = new ArrayList<>();
-        farms = farmRepository.findAll();
-        List<FarmDto> farmDto = FarmMapper.INSTANCE.convert(farms);
-        if (farms == null || farms.isEmpty() || farms.size() == 0) {
-            throw new FarmNotFoundExceptions(FarmErrorMessage.NOT_FOUND);
-        }
-        FarmResultRes farmResultRes = new FarmResultRes();
 
-        for (FarmDto farmDto1 : farmDto) {
-            farmResultRes.setSize(farmDto1.getSize());
-            farmResultRes.setReady(farmDto1.getReady());
-            farmResultRes.setType(farmDto1.getType());
-            farmResultRes.setUserName(farmDto1.getUser().getUsername());
-            farmResultRes.setUserId(farmDto1.getUser().getId());
-
-            List<CustomCropRes> customCropResList = farmDto1.getCrops().stream()
-                    .map(crop -> {
-                        CustomCropRes customCropRes = new CustomCropRes();
-                        customCropRes.setCropAmount(crop.getCropAmount());
-                        customCropRes.setName(crop.getName());
-                        customCropRes.setPlanting_time(crop.getPlanting_time());
-                        return customCropRes;
-                    })
-                    .collect(Collectors.toList());
-            farmResultRes.setCustomCropRes(customCropResList);
-
-            List<CustomTaskRes> customTaskResList = farmDto1.getTasks().stream()
-                    .map(task -> {
-                        CustomTaskRes customTaskRes = new CustomTaskRes();
-                        customTaskRes.setName(task.getName());
-                        customTaskRes.setStatement(task.getStatement());
-                        customTaskRes.setEndDate(task.getEndDate());
-                        customTaskRes.setStartDate(task.getStartDate());
-                        return customTaskRes;
-                    })
-                    .collect(Collectors.toList());
-            farmResultRes.setCustomTaskRes(customTaskResList);
-
-            List<CustomMachineRes> customMachineResList = farmDto1.getMachines().stream()
-                    .map(machine -> {
-                        CustomMachineRes customMachineRes = new CustomMachineRes();
-                        customMachineRes.setBrand(machine.getBrand());
-                        customMachineRes.setWorking(machine.getWorking());
-                        customMachineRes.setType(machine.getType());
-                        return customMachineRes;
-                    })
-                    .collect(Collectors.toList());
-            farmResultRes.setCustomMachineRes(customMachineResList);
-
-            List<CustomSensorRes> customSensorResList = farmDto1.getSensors().stream()
-                    .map(sensor -> {
-                        CustomSensorRes customSensorRes = new CustomSensorRes();
-                        customSensorRes.setSensitivity(sensor.getSensitivity());
-                        customSensorRes.setType(sensor.getType());
-                        customSensorRes.setValue(sensor.getValue());
-                        return customSensorRes;
-                    })
-                    .collect(Collectors.toList());
-            farmResultRes.setCustomSensorRes(customSensorResList);
-        }
-        return farmResultRes;
+        return null;
     }
 
     @Override
     public FarmResultRes getFarmById(Long farmId) {
+
+        try {
+            Optional<Farm> farm = farmRepository.findById(farmId);
+        } catch (Exception e) {
+            throw new NotFoundExceptions(FarmErrorMessage.NOT_FOUND);
+        }
         return null;
+
     }
 
     @Override
@@ -107,20 +54,17 @@ public class FarmServiceImpl implements FarmService {
     @Override
     public FarmResultRes saveFarm(FarmSaveReq farmSaveReq) {
 
-        if (farmSaveReq == null) {
-            throw new BusinessException(FarmErrorMessage.BAD_REQUEST);
-        }
+        Farm farm=new Farm();
+        farm.setName(farmSaveReq.getName());
+        farm.setSize(farmSaveReq.getSize());
+        Farm savedFarm=farmRepository.save(farm);
 
-        Farm farm = FarmMapper.INSTANCE.convertFarmToReq(farmSaveReq);
+        FarmResultRes farmResultRes=new FarmResultRes();
+        farmResultRes.setReady(savedFarm.getReady());
+        farmResultRes.setName(savedFarm.getName());
+        farmResultRes.setSize(savedFarm.getSize());
 
-        Farm save = farmRepository.save(farm);
-        if (save == null) {
-            throw new BusinessException(FarmErrorMessage.SAVE_ERROR);
-        }
+        return farmResultRes;
 
-
-        return null;
     }
-
-
 }

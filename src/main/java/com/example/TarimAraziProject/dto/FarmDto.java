@@ -16,7 +16,6 @@ public class FarmDto {
     private User user;
     private List<Crop> crops;
     private List<Task> tasks;
-    private List<Machine> machines;
     private List<Sensor> sensors;
 
 }
