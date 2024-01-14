@@ -20,7 +20,7 @@ public class Warehouse extends BaseEntitiy implements Cloneable{
     @Column (name = "WAREHOUSE_NAME",length = 50,nullable = false)
     private String name;
     @Column(name = "CAPACITY",length = 100,nullable = false)
-    private Integer capacity;
+    private Float capacity;
     @Column(name = "OCCUPANCY",length = 100,nullable = false)
     private Double occupancy;
    @ManyToOne

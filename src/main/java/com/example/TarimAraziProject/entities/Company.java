@@ -11,9 +11,9 @@ import java.util.List;
 public class Company extends BaseEntitiy {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Company")
-    @Column(name = "COMPANY_ID", length = 30, nullable = false)
-    @SequenceGenerator(name = "COMPANY", sequenceName = "COMPANY_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "Company")
+    @Column (name = "COMPANY_ID",length = 30,nullable = false)
+    @SequenceGenerator(name = "Company",sequenceName = "COMPANY_ID_SEQ",allocationSize = 1)
     private Long id;
     @Column(name = "COMPANY_NAME", length = 30, nullable = false)
     private String name;
