@@ -1,10 +1,11 @@
 package com.example.TarimAraziProject.mapper;
 
+import com.example.TarimAraziProject.dto.custom.CustomFarmRes;
 import com.example.TarimAraziProject.dto.custom.CustomUserRes;
 import com.example.TarimAraziProject.dto.custom.CustomVehicleRes;
+import com.example.TarimAraziProject.dto.custom.CustomWarehouseRes;
 import com.example.TarimAraziProject.dto.res.CompanyResultRes;
-import com.example.TarimAraziProject.entities.Company;
-import com.example.TarimAraziProject.entities.Vehicle;
+import com.example.TarimAraziProject.entities.*;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -23,6 +24,20 @@ public interface CompanyMapper {
     @Mapping(source = "user", target = "customUserRes")
     CompanyResultRes companyToCompanyResultRes(Company company);
 
+    default CompanyResultRes mapOptionalCompany(Optional<Company> company) {
+        return company.map(this::companyToCompanyResultRes).orElse(null);
+    }
+    default List<CustomFarmRes> farmsToCustomFarmResList(List<Farm> farms) {
+        return farms.stream()
+                .map(farm -> {
+                    CustomFarmRes customFarmRes = new CustomFarmRes();
+                    customFarmRes.setSize(farm.getSize());
+                    customFarmRes.setReady(farm.getReady());
+                    return customFarmRes;
+                })
+                .collect(Collectors.toList());
+    }
+
     default List<CustomVehicleRes> vehiclesToCustomVehicleResList(List<Vehicle> vehicles) {
         return vehicles.stream()
                 .map(vehicle -> {
@@ -34,10 +49,29 @@ public interface CompanyMapper {
                 .collect(Collectors.toList());
     }
 
-    default CompanyResultRes mapOptionalCompany(Optional<Company> company) {
-        return company.map(this::companyToCompanyResultRes).orElse(null);
+    default List<CustomWarehouseRes> warehousesToCustomWarehouseResList(List<Warehouse> warehouses) {
+        return warehouses.stream()
+                .map(warehouse -> {
+                    CustomWarehouseRes customWarehouseRes = new CustomWarehouseRes();
+                    customWarehouseRes.setWarehouseName(warehouse.getName());
+                    customWarehouseRes.setCapacity(warehouse.getCapacity());
+                    customWarehouseRes.setOccupancy(warehouse.getOccupancy());
+                    return customWarehouseRes;
+                })
+                .collect(Collectors.toList());
     }
 
+    default List<CustomUserRes> usersToCustomUserResList(List<User> users) {
+        return users.stream()
+                .map(user -> {
+                    CustomUserRes customUserRes = new CustomUserRes();
+                    customUserRes.setUsername(user.getUsername());
+                    customUserRes.setPassword(user.getPassword());
+                    customUserRes.setEmail(user.getEmail());
+                    return customUserRes;
+                })
+                .collect(Collectors.toList());
+    }
     List<CompanyResultRes> companiesToCompanyResultResList(List<Company> companies);
 
 

@@ -25,5 +25,4 @@ public class CompanyResultRes {
     private List<CustomWarehouseRes> warehouses;
     private List<CustomUserRes> customUserRes;
 
-
 }

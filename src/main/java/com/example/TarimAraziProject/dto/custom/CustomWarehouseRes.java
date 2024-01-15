@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class CustomWarehouseRes{
     private String warehouseName;
-    private Integer capacity;
+    private Float capacity;
     private Double occupancy;
 }

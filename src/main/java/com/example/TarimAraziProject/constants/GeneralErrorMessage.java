@@ -6,7 +6,8 @@ public enum GeneralErrorMessage  implements BaseErrorMessage {
 
     SAVE_FARM_TO_COMPANY_ERROR("Farm save to Company error!"),
     SAVE_VEHICLE_TO_COMPANY("Vehicle save to Company error!"),
-    SAVE_USER_TO_FARM("Userr save to company Error"),
+    SAVE_USER_TO_FARM("User save to company Error"),
+    NOT_READY_HARVEST("Farm is not ready harvest because not planted yet"),
     UNDEFINED_TASK_TYPE("invalid task type")
     ;
 

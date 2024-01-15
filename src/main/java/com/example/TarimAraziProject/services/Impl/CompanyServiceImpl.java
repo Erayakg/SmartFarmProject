@@ -3,6 +3,7 @@ package com.example.TarimAraziProject.services.Impl;
 import com.example.TarimAraziProject.constants.CompanyErrorMessage;
 import com.example.TarimAraziProject.constants.FarmErrorMessage;
 import com.example.TarimAraziProject.constants.GeneralErrorMessage;
+import com.example.TarimAraziProject.constants.typeEnum.VehicleTypeEnum;
 import com.example.TarimAraziProject.dto.req.*;
 import com.example.TarimAraziProject.dto.res.CompanyResultRes;
 import com.example.TarimAraziProject.entities.*;
@@ -85,11 +86,7 @@ public class CompanyServiceImpl implements CompanyService {
         farm.setName(farmSaveReq.getName());
         Farm savedFarm = farmRepository.save(farm);
 
-        Optional<Farm> optionalFarm = farmRepository.findById(savedFarm.getId());
 
-        if (optionalFarm.isEmpty()) {
-            throw new NotFoundExceptions(FarmErrorMessage.NOT_FOUND);
-        }
         if (optionalCompany.isEmpty()) {
             throw new NotFoundExceptions(CompanyErrorMessage.NOT_FOUND);
         }
@@ -97,7 +94,8 @@ public class CompanyServiceImpl implements CompanyService {
         try {
 
             Company company = optionalCompany.get();
-            company.getFarms().add(optionalFarm.get());
+            company.getFarms().add(savedFarm);
+            farm.setCompany(company);
 
             Company savedCompany = companyRepository.save(company);
             CompanyResultRes companyResultRes = CompanyMapper.INSTANCE.companyToCompanyResultRes(savedCompany);
@@ -115,7 +113,11 @@ public class CompanyServiceImpl implements CompanyService {
             throw new NotFoundExceptions(CompanyErrorMessage.NOT_FOUND);
         }
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleType(vehicleSaveReq.getVehicleType());
+        if (vehicleSaveReq.getVehicleType() == 1){
+            vehicle.setVehicleType(VehicleTypeEnum.VEHICLE_TYPE_FERTILIZATION);
+        } else if (vehicleSaveReq.getVehicleType() == 2) {
+            vehicle.setVehicleType(VehicleTypeEnum.VEHICLE_TYPE_PLOWING);
+        }
         vehicle.setName(vehicleSaveReq.getName());
         vehicle.setCompany(optionalCompany.get());
         Vehicle savedVehicle = vehicleRepository.save(vehicle);
@@ -123,6 +125,7 @@ public class CompanyServiceImpl implements CompanyService {
         try {
             Company company = optionalCompany.get();
             company.getVehicles().add(savedVehicle);
+            savedVehicle.setCompany(company);
 
             Company savedCompany = companyRepository.save(company);
             CompanyResultRes companyResultRes = CompanyMapper.INSTANCE.companyToCompanyResultRes(savedCompany);
@@ -152,6 +155,7 @@ public class CompanyServiceImpl implements CompanyService {
         try {
             Company company = optionalCompany.get();
             company.getUser().add(savedUser);
+            user.setCompany(company);
 
             Company savedCompany = companyRepository.save(company);
             CompanyResultRes companyResultRes = CompanyMapper.INSTANCE.companyToCompanyResultRes(savedCompany);
@@ -181,7 +185,7 @@ public class CompanyServiceImpl implements CompanyService {
         try {
             Company company = optionalCompany.get();
             company.getWarehouses().add(savedWarehouse);
-
+            warehouse.setCompany(company);
             Company savedCompany = companyRepository.save(company);
             CompanyResultRes companyResultRes = CompanyMapper.INSTANCE.companyToCompanyResultRes(savedCompany);
 

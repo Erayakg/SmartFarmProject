@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class VehicleSaveReq {
 
-    private VehicleTypeEnum vehicleType;
+    private int  vehicleType;
     private String name;
 
 
