@@ -39,7 +39,6 @@ public class TaskController {
                 break;
             case 2:
                 TaskExecute.execute(irrigateFarmService, taskSaveReq.getFarmId(), taskSaveReq.getCompanyId(),taskSaveReq.getVehicleId());
-
                 break;
             case 3:
                 TaskExecute.execute(plantingFarmService, taskSaveReq.getFarmId(), taskSaveReq.getCompanyId(),taskSaveReq.getVehicleId());

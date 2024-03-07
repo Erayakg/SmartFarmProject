@@ -15,7 +15,7 @@ public class TaskResultRes {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-    Farm farm   ;
+    Farm farm;
     Fertilization fertilization;
     Harvesting harvesting;
     Irrigate irrigate;
